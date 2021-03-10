@@ -12,8 +12,9 @@ using System.Threading.Tasks;
 
 namespace NetCoreReact.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
+    //[Route("api/[controller]")]
     public class EventController : ControllerBase
     {
         private readonly IEventService _eventService;
@@ -53,7 +54,10 @@ namespace NetCoreReact.Controllers
             {
                 Title = createEventModel.Title,
                 Description = createEventModel.Description,
-                EventDate = createEventModel.EventDate
+                StartDate = createEventModel.StartDate,
+                EndDate = createEventModel.EndDate,
+                AllDay = createEventModel.AllDay,
+                Place = createEventModel.Place
             };
 
             var createdEvent = await _eventService.CreateEventAsync(eventModel);
@@ -78,7 +82,10 @@ namespace NetCoreReact.Controllers
                 Id = id,
                 Title = updateEventModel.Title,
                 Description = updateEventModel.Description,
-                EventDate = updateEventModel.EventDate
+                StartDate = updateEventModel.StartDate,
+                EndDate = updateEventModel.EndDate,
+                AllDay = updateEventModel.AllDay,
+                Place = updateEventModel.Place
             };
 
             var updatedEvent = await _eventService.UpdateEventAsync(eventModel);
@@ -97,51 +104,6 @@ namespace NetCoreReact.Controllers
 
             await _eventService.DeleteEventAsync(id);
             return NoContent();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // GET: api/<EventsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<EventsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<EventsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<EventsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<EventsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

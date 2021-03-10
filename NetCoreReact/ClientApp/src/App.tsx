@@ -1,16 +1,26 @@
-import * as React from 'react';
-import { Route } from 'react-router';
-import Layout from './components/Layout';
-import Home from './components/Home';
-import Counter from './components/Counter';
-import FetchData from './components/FetchData';
+import * as React from "react";
+import { Redirect, Route } from "react-router";
+import { connect } from "react-redux";
 
-import './custom.css'
+import Layout from "./pages/app/components/Layout";
+import EventsPage from "./pages/events/EventsPage";
+import EventsNotifications from "./pages/notifications/EventsNotifications";
+import { AlertCustom } from "./pages/app/components/AlertCustom";
 
-export default () => (
+import "./custom.css";
+
+export default (/*props*/) => (
     <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
+        {/* {props.alert && <AlertCustom text={props.alert} />} */}
+        <Route exact path="/" render={() => <Redirect to="/events" />} />
+
+        <Route path="/events" component={EventsPage} />
+        <Route path="/notification" component={EventsNotifications} />
     </Layout>
 );
+
+// const mapStateToProps = (state) => ({
+//     alert: state.app.alert,
+// });
+
+// export default connect(mapStateToProps, null)(App);

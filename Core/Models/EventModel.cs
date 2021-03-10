@@ -7,6 +7,9 @@ namespace NetCoreReact.Core.Models
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime EventDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool? AllDay { get; set; }
+        public string Place { get; set; }
     }
 }

@@ -7,6 +7,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetCoreReact.Data;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using NetCoreReact.Core.Intefaces;
+using NetCoreReact.Core.Services;
+using NetCoreReact.Data.Intefaces;
+using NetCoreReact.Data.Repositories;
+using NetCoreReact.Hubs;
+using NetCoreReact.Core.Common;
+using NetCoreReact.Core.Interfaces;
 
 namespace NetCoreReact
 {
@@ -30,7 +39,18 @@ namespace NetCoreReact
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddDbContext<EventContext>(opt => opt.UseMs)
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder => { builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
+
+            services.AddDbContext<EventsAppDbContext>(opt => opt.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddSignalR();
+
+            services.Configure<AuthOptions>(Configuration.GetSection("Auth"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +78,8 @@ namespace NetCoreReact
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+
+                endpoints.MapHub<NotificationHub>("/notification");
             });
 
             app.UseSpa(spa =>
@@ -69,6 +91,8 @@ namespace NetCoreReact
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            app.UseCors("MyPolicy");
         }
     }
 }

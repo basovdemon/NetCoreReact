@@ -8,9 +8,9 @@ namespace NetCoreReact.Data.Repositories
 {
     public class EventRepository : IEventRepository
     {
-        private readonly EventContext _eventContext;
+        private readonly EventsAppDbContext _eventContext;
 
-        public EventRepository(EventContext eventContext)
+        public EventRepository(EventsAppDbContext eventContext)
         {
             _eventContext = eventContext;
         }

@@ -31,7 +31,10 @@ namespace NetCoreReact.Core.Services
             {
                 Title = eventModel.Title,
                 Description = eventModel.Description,
-                EventDate = eventModel.EventDate
+                StartDate = eventModel.StartDate,
+                EndDate = eventModel.EndDate,
+                AllDay = eventModel.AllDay,
+                Place = eventModel.Place
             };
 
             eventEntity = await _eventRepository.AddAsync(eventEntity);
@@ -41,13 +44,16 @@ namespace NetCoreReact.Core.Services
                 Id = eventEntity.Id,
                 Title = eventEntity.Title,
                 Description = eventEntity.Description,
-                EventDate = eventEntity.EventDate
+                StartDate = eventModel.StartDate,
+                EndDate = eventModel.EndDate,
+                AllDay = eventModel.AllDay,
+                Place = eventModel.Place
             };
         }
 
-        public Task<EventModel> DeleteEventAsync(Guid eventId)
+        public async Task DeleteEventAsync(Guid eventId)
         {
-            throw new NotImplementedException();
+            await _eventRepository.RemoveAsync(eventId);
         }
 
         public async Task<EventModel> GetEventAsync(Guid eventId)
@@ -61,7 +67,10 @@ namespace NetCoreReact.Core.Services
                 Id = eventEntity.Id,
                 Title = eventEntity.Title,
                 Description = eventEntity.Description,
-                EventDate = eventEntity.EventDate
+                StartDate = eventEntity.StartDate,
+                EndDate = eventEntity.EndDate,
+                AllDay = eventEntity.AllDay,
+                Place = eventEntity.Place
             };
         }
 
@@ -73,7 +82,10 @@ namespace NetCoreReact.Core.Services
                 Id = eventEntity.Id,
                 Title = eventEntity.Title,
                 Description = eventEntity.Description,
-                EventDate = eventEntity.EventDate
+                StartDate = eventEntity.StartDate,
+                EndDate = eventEntity.EndDate,
+                AllDay = eventEntity.AllDay,
+                Place = eventEntity.Place
             }).ToListAsync();
         }
 
@@ -84,7 +96,10 @@ namespace NetCoreReact.Core.Services
                 Id = eventModel.Id,
                 Title = eventModel.Title,
                 Description = eventModel.Description,
-                EventDate = eventModel.EventDate
+                StartDate = eventModel.StartDate,
+                EndDate = eventModel.EndDate,
+                AllDay = eventModel.AllDay,
+                Place = eventModel.Place
             };
 
             eventEntity = await _eventRepository.UpdateAsync(eventEntity);
@@ -94,7 +109,10 @@ namespace NetCoreReact.Core.Services
                 Id = eventEntity.Id,
                 Title = eventEntity.Title,
                 Description = eventEntity.Description,
-                EventDate = eventEntity.EventDate
+                StartDate = eventEntity.StartDate,
+                EndDate = eventEntity.EndDate,
+                AllDay = eventEntity.AllDay,
+                Place = eventEntity.Place
             };
         }
     }

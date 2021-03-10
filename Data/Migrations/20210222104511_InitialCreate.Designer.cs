@@ -9,7 +9,7 @@ using NetCoreReact.Data;
 
 namespace Data.Migrations
 {
-    [DbContext(typeof(EventContext))]
+    [DbContext(typeof(EventsAppDbContext))]
     [Migration("20210222104511_InitialCreate")]
     partial class InitialCreate
     {

@@ -9,7 +9,7 @@ namespace NetCoreReact.Core.Intefaces
     {
         Task<EventModel> CreateEventAsync(EventModel eventModel);
         Task<EventModel> UpdateEventAsync(EventModel eventModel);
-        Task<EventModel> DeleteEventAsync(Guid eventId);
+        Task DeleteEventAsync(Guid eventId);
         Task<EventModel> GetEventAsync(Guid eventId);
         Task<List<EventModel>> GetEventsAsync();
     }
