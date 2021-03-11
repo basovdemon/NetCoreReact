@@ -46,8 +46,26 @@ namespace NetCoreReact.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] Register request)
         {
-            var user = await userService.CreateUserAsync()
+            var userModel = new UserModel()
+            {
+                Email = request.Email,
+                Username = request.Username,
+                Password = request.Password
+            };
 
+            if (userService.GetUsersAsync().Result.Any(u => u.Email == userModel.Email))
+            {
+                //return Content("User with such Email already exist");
+                return Conflict(); 
+            }
+
+            var user = await userService.CreateUserAsync(userModel);
+
+            if (user != null) {
+                return Ok();
+            }
+
+            return Unauthorized();
         }
 
         private string GenerateJWT(UserModel user)

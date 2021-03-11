@@ -42,11 +42,6 @@ namespace NetCoreReact.Core.Services
                 throw new ArgumentNullException(nameof(userModel));
             }
 
-            if (userRepository.Get().Any(u => u.Email == userModel.Email))
-            {
-                throw new ArgumentException("Forbidden to register User with an existing Email");
-            }
-
             var userEntity = new Data.Entities.User
             {
                 Username = userModel.Username,

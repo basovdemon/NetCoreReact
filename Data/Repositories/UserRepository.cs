@@ -1,4 +1,5 @@
-﻿using NetCoreReact.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using NetCoreReact.Data.Entities;
 using NetCoreReact.Data.Intefaces;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace NetCoreReact.Data.Repositories
 
         public async Task<User> AuthentificateUserAsync(string email, string password)
         {
-            return await dbContext.Users.FindAsync(email, password);
+            return await dbContext.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);    
         }
 
         public async Task<User> FindAsync(Guid id)
