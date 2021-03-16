@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NetCoreReact.Core.Models
 {
@@ -11,5 +12,7 @@ namespace NetCoreReact.Core.Models
         public DateTime EndDate { get; set; }
         public bool? AllDay { get; set; }
         public string Place { get; set; }
+
+        public List<UserModel> Users { get; set; }
     }
 }

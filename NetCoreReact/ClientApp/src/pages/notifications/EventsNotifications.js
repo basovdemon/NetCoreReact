@@ -104,12 +104,12 @@ function EventsNotifications(props) {
 
     const notificationSubmit = (event) => {
         debugger;
-        setNotification(event);
+        // setNotification(event);
 
         try {
             fetch(`${process.env.REACT_APP_EVENT_SERVICE}/notification`, {
                 method: "POST",
-                body: JSON.stringify({ notification: notification }),
+                body: JSON.stringify({ notification: event }),
                 headers: {
                     "Content-Type": "application/json",
                 },

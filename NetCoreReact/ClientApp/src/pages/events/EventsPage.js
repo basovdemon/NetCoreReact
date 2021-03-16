@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import EventsCalendar from "./EventsCalendar";
 
-import { getEvents } from "../../redux/selectors/eventSelector";
+// import { getEvents } from "../../redux/selectors/eventSelector";
 import {
     startAddingEvent,
     startDeletingEvent,
@@ -15,15 +15,15 @@ import {
 
 function EventsPage(props) {
     return (
-        <div>
+        <>
             <EventsCalendar events={props.events} />
-        </div>
+        </>
     );
 }
 
-const mapStateToProps = (state) => {
-    return { events: getEvents(state) };
-};
+// const mapStateToProps = (state) => {
+//     return { events: state.events.events };
+// };
 
 const mapDispatchToProps = (dispatch) => ({
     startAddingEvent: bindActionCreators(startAddingEvent, dispatch),
@@ -33,4 +33,4 @@ const mapDispatchToProps = (dispatch) => ({
     startSettingEvents: bindActionCreators(startSettingEvents, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventsPage);
+export default connect(null, mapDispatchToProps)(EventsPage);

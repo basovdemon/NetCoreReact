@@ -57,7 +57,12 @@ namespace NetCoreReact.Controllers
                 StartDate = createEventModel.StartDate,
                 EndDate = createEventModel.EndDate,
                 AllDay = createEventModel.AllDay,
-                Place = createEventModel.Place
+                Place = createEventModel.Place,
+                Users = createEventModel.Users.Select(e => new UserModel
+                {
+                    Id = e.Id,
+                    Username = e.Username
+                }).ToList()
             };
 
             var createdEvent = await _eventService.CreateEventAsync(eventModel);

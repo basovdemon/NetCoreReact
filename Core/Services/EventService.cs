@@ -34,7 +34,11 @@ namespace NetCoreReact.Core.Services
                 StartDate = eventModel.StartDate,
                 EndDate = eventModel.EndDate,
                 AllDay = eventModel.AllDay,
-                Place = eventModel.Place
+                Place = eventModel.Place,
+                Users = eventModel.Users.Select(e => new User
+                {
+                    Id = e.Id,
+                }).ToList()
             };
 
             eventEntity = await _eventRepository.AddAsync(eventEntity);

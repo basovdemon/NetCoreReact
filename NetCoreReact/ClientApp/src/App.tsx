@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Layout from "./pages/app/components/Layout";
 import EventsPage from "./pages/events/EventsPage";
 import EventsNotifications from "./pages/notifications/EventsNotifications";
+import AuthPage from "./pages/auth/AuthPage";
 import { AlertCustom } from "./pages/app/components/AlertCustom";
 
 import "./custom.css";
@@ -16,6 +17,7 @@ export default (/*props*/) => (
 
         <Route path="/events" component={EventsPage} />
         <Route path="/notification" component={EventsNotifications} />
+        <Route path="/auth" component={AuthPage} />
     </Layout>
 );
 

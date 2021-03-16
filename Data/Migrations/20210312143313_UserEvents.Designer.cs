@@ -10,8 +10,8 @@ using NetCoreReact.Data;
 namespace Data.Migrations
 {
     [DbContext(typeof(EventsAppDbContext))]
-    [Migration("20210311173427_ManyToMany")]
-    partial class ManyToMany
+    [Migration("20210312143313_UserEvents")]
+    partial class UserEvents
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

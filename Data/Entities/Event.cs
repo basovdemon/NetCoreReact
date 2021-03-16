@@ -19,7 +19,7 @@ namespace NetCoreReact.Data.Entities
         [Required]
         public string Place { get; set; }
 
-        [Required]
+        //[Required]
         public List<User> Users { get; set; } = new List<User>();
     }
 }

@@ -1,5 +1,8 @@
-import { createSelector } from "reselect";
+// import { createSelector } from "reselect";
 
-const getEventState = (state) => state.events;
+// const getEventState = (state) => state.events.events;
 
-export const getEvents = createSelector([getEventState], (s) => s.events);
+// export const getEvents = createSelector(
+//     [getEventState],
+//     (s) => s.events.events
+// );

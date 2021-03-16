@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class ManyToMany : Migration
+    public partial class UserEvents : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

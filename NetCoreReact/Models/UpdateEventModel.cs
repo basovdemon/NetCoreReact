@@ -14,5 +14,7 @@ namespace NetCoreReact.Models
         public DateTime EndDate { get; set; }
         public bool? AllDay { get; set; }
         public string Place { get; set; }
+
+        public List<UserEventModel> Users { get; set; }
     }
 }

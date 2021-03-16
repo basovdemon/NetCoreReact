@@ -36,7 +36,7 @@ namespace NetCoreReact.Controllers
             {
               var token =  GenerateJWT(user);
 
-                return Ok(new { access_token = token });
+                return Ok(new { access_token = token, profile = user });
             }
 
             return Unauthorized();
@@ -63,6 +63,20 @@ namespace NetCoreReact.Controllers
 
             if (user != null) {
                 return Ok();
+            }
+
+            return Unauthorized();
+        }
+
+
+        [Route("getProfile")]
+        [HttpGet]
+        public async Task<IActionResult> getProfile([FromBody] string token)
+        {
+            var result = new JwtSecurityTokenHandler().ReadJwtToken(token);
+            if (result != null)
+            {
+                return Ok(new { access_token = token, profile = result });
             }
 
             return Unauthorized();

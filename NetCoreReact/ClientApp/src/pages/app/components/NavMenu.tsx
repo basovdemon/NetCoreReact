@@ -55,6 +55,15 @@ export default class NavMenu extends React.PureComponent<
                                         Create/accept event
                                     </NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        tag={Link}
+                                        className="text-dark"
+                                        to="/auth"
+                                    >
+                                        Auth
+                                    </NavLink>
+                                </NavItem>
                             </ul>
                         </Collapse>
                     </Container>
